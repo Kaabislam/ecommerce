@@ -33,10 +33,6 @@ public class Product {
     @Min(value = 0, message = "Price must be a positive value")
     private Double price;
 
-    @NotNull(message = "Quantity is required")
-    @Min(value = 0, message = "Quantity must be a non-negative value")
-    private Integer quantity;
-
     private String category;
 
     @CreationTimestamp

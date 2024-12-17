@@ -1,5 +1,6 @@
 package com.kaab.ecommerce.controller;
 
+import com.kaab.ecommerce.dto.ProductRequest;
 import com.kaab.ecommerce.entity.Product;
 import com.kaab.ecommerce.service.ProductService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -26,8 +27,9 @@ public class ProductController {
     // Add a new product (admin only)
     @PostMapping
 //    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public ResponseEntity<Product> addProduct(@Valid @RequestBody Product product) {
-        return ResponseEntity.ok(productService.addProduct(product));
+    public ResponseEntity<Product> addProduct(@Valid @RequestBody ProductRequest productRequest) {
+        Product createdProduct = productService.addProduct(productRequest.getProduct(),productRequest.getInitialStock());
+        return ResponseEntity.ok(createdProduct);
     }
 
     // List all products with pagination and sorting
